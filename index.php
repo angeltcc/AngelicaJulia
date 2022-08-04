@@ -14,7 +14,7 @@
         <title>Bem vindo!</title>
     </head>    
     <body>
-    <!-- header.inc.php -->
+    <!-- header -->
         <?php include "headerEfooter/header.inc.php"; ?>
     <!-- body -->
     <section class="pt-4 pt-md-11">
