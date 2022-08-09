@@ -1,6 +1,10 @@
 <?php
+session_start();
+include_once "conexao.php";
 
+$pdo = conectar();
 ?>
+
 <!doctype html>
 <html lang="pt-br">
     <head>
@@ -18,7 +22,18 @@
     <?php include "headerEfooter/header.inc.php"; ?>
     <!-- body -->
         <div class="container">
-        <h1> MODAL LOGIN </h1>
+        <div class="form-group">
+        <form method="post">
+            <label>Usuario: </label>
+            <input type="text" name="usuario" placeholder="Usuario">
+            <br><br>
+            <label>Senha: </label>
+            <input type="password" name="senha" placeholder="Senha">
+            <br><br>
+            <input type="submit" name="btnlogin" value="Login" class="btn btn-primary">
+
+        </form>
+    </div>
         </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -32,3 +47,26 @@
     -->
     </body>
 </html>
+
+<?php
+if (isset($_POST['btnSalvar'])) {
+	echo'formulario enviado com sucesso';
+}
+
+$usuario = isset($_POST['usuario']) ? $_POST['usuario'] : null;
+$senha = isset($_POST['senha']) ? $_POST['senha'] : null;
+
+if(empty($usuario) && empty($senha)){
+        echo "Necessário informar usuario e senha";
+        exit();
+    }
+
+    $sql = "SELECT usuario, senha FROM tb_cliente WHERE usuario = :u AND senha = :s";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':u', $usuario);
+    $stmt->bindParam(':s', $senha);
+    if ($stmt->execute()) {
+        echo ('Registro inserido com sucesso');
+        }
+?>
+

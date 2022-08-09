@@ -10,6 +10,7 @@ body {
 
 .container {
     padding-top: 100px;
+    padding-bottom: 50px;
 }
 
 p{
@@ -20,6 +21,16 @@ p{
 a {
     color: #fff;
     text-decoration:solid;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    outline: revert;
+  }
+
+#limite {
+    margin-block-end: 200px;
 }
 
 /* barra de navegação */
@@ -88,3 +99,4 @@ h2 {
     color: rgb(41, 20, 100);
 }
 
+/* rodape */

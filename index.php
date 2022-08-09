@@ -1,5 +1,10 @@
 <?php
+function conectar()
+{
+    $pdo = new PDO('mysql:host=localhost;dbname=projetotcc', 'root', '');
 
+    return $pdo;
+}
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -19,10 +24,11 @@
     <!-- body -->
     <section class="pt-4 pt-md-11">
         <div class="container">
+            <div id="limite">
             <div class="row align-items-center">
                 <div class="col-12 col-md-5 col-lg-6 order-md-1" style="margin-left:-70px; margin-right:70px;">
-                    <!--image-->
-                    <img src="imagens/camisetabase2.png" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0">
+                    <!--image -->
+                    <img src="imagens/camisetabase.png" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0">
                 </div>
                 <div class="col-12 col-md-7 col-lg-6 order-md-1">
                     <h2>
@@ -34,7 +40,27 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
+    <section class="pt-4 pt-md-11">
+        <div class="container">
+            <div id="limite">
+            <!-- <div class="row align-items-center justify-content-between mb-8 mb-md-11"> -->
+            <div class="row align-items-center">
+                <div class="col-12 col-md-7 col-lg-6 order-md-1">
+                    <h2>Lorem Ipsum</h2>
+                    <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim turpis sit amet sodales vulputate. Duis eu ex id erat tincidunt aliquet. Aenean eget mauris mi. Proin faucibus lacinia sodales. Donec congue quam vitae ipsum varius, id dictum risus maximus. Proin at nunc in mi pharetra feugiat vitae sagittis quam. Morbi malesuada eros quis varius facilisis. Donec tempor semper sem ac auctor.</h1>
+                </div>
+                <div class="col-12 col-md-7 col-lg-6 order-md-1" style="margin-right:-70px; margin-left:70px;">
+                    <div>
+                    <!--image-->
+                    <img src="https://creazilla-store.fra1.digitaloceanspaces.com/silhouettes/85/cat-silhouette-ac61da-md.png" class="img-fluid mw-md-50 mw-lg-30 mb-6 mb-md-0">
+                </div>
+            </div>
+        </div>
+            </div>
+    </section>
+    <?php include "headerEfooter/footer.inc.php"; ?>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
