@@ -1,0 +1,352 @@
+/*gerais */
+html {
+    scroll-behavior: smooth;
+}
+
+.add {
+    /*max-height: 3.5rem !important;*/
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.4s ease;
+}
+
+.overflow {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+}
+
+.overflow[data-state="visible"] {
+    display: block;
+}
+
+.add.active{
+    height: auto;
+
+}
+
+input{
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input{
+    transition: all.5s;
+}
+
+.dropdown-item{
+    transition: all.5s ease-in-out;
+    border-radius: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #bbffb8;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+.imagem {
+    padding: 2rem;
+}
+
+.scroll {
+    padding: 3em;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    padding: 6%;
+    min-height: 100vh;
+    padding-top: 8rem;
+}
+
+.scroll:nth-of-type(2) {
+    background:rgb(255 228 244);
+}
+
+p{
+    color:rgb(41, 20, 100);
+    font-size: 14px;
+}
+
+a {
+    color: rgb(255, 255, 255);
+    text-decoration:solid;
+    transition: all.3s;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    outline: revert;
+  }
+
+::placeholder {
+  font-family: 'Roboto', sans-serif;
+}
+
+.descricao {
+    font-size: 15px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #FFF;
+    margin-block-end: 0;
+    text-align: center;
+}
+
+/* barra de navegação */
+header, .navbar {
+    background-color: #1e79b5;
+    opacity: 98%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    max-height: 90px;
+    padding-left: 10%!important;
+    padding-right: 10%!important;
+}
+
+header ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li{
+    list-style: none;
+    margin-left: 20px;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 6.3vw;
+    left: 6.3vw;
+    z-index: 1030;
+}
+
+#nav-container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#logo {
+    width: 70px;
+    height: 70px;
+    padding-bottom: 3px;
+}
+
+.navbar-brand {
+    padding: 0;
+    color: #FFF;
+} 
+
+.navbar-expand-lg, .navbar-nav, .nav-link {
+    padding: 10px .8rem;
+    color: #FFF;
+    font-size: 22px;
+    font-family:monospace;
+}
+
+.nav-link {
+    transition: all.5s ease;
+}
+
+
+li a:hover, li a:focus, li a:active {
+    background-color: #fff;
+    color: #1e79b5;
+    border-radius: 30px;
+}
+
+.button-submit {
+    background: #1e79b5;
+    color: white;
+    border-radius: 25px;
+    height: 50px;
+    width: 100%;
+    font: bold 15px arial, sans-serif;
+    border-color: #1e79b5;
+}
+
+.button-submit:hover{
+    background-color: #fff;
+    color: #1e79b5;
+}
+
+.modal-title {
+    font-weight: bold ;
+    color: #666565;
+}
+
+.amodal {
+    color: #1e79b5;
+}
+
+.fixed-center{
+    padding: 40px;
+}
+
+.modal-title {
+    font-family: monospace;
+}
+
+.container-p{
+    padding-top: 2rem;
+}
+
+.page-link {
+    color:#1e79b5!important;
+}
+/* primeira divisao */
+
+h1 {
+    font-size: 25px;
+    color: rgb(41, 20, 100);
+}
+
+h2 {
+    font-size: 40px;
+    font-family: monospace;
+    color: rgb(41, 20, 100);
+}
+
+/* footer */
+.footer {
+    width: 100vw;
+    height: max-content;
+    box-sizing: border-box;
+    background-color: #1e79b5;
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    
+}
+
+.pfooter {
+    color: #FFF;
+}
+
+h5 {
+    color: #FFF;
+}
+
+.banner {
+    height: 100vh;
+    width: 100%;
+    background-image: url(imagens/paisagemroxa.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+}
+
+h1.sobre {
+    font-family:monospace;
+    font-size: 70px;
+    color: #FFF;
+}
+
+.border-top{
+    border-top: 0px !important;
+}
+
+#button {
+    margin-top: 2rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 5px;
+}
+#button:hover{
+    background: rgb(255, 69, 156);
+}
+
+#buttonlilas {
+    background-color: #1e79b5;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 5px;
+}
+#buttonlilas:hover{
+    background: #000;
+}
+
+#lilas{
+    color: #1e79b5 !important;
+}
+/*media screen*/
+@media screen and (max-width: 992px) {
+    .imagem {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .imagem {
+        padding: 0rem;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    h1 {
+        font-size: 22px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    h1 {
+        font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    header, .navbar {
+        border-radius: 0;
+        height: 6rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .fixed-top {
+        right: 0;
+        left: 0;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    .scroll {
+        padding-top: 6rem;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    h1.sobre {
+        font-size: 60px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    h1.sobre {
+        font-size: 50px;
+
+    }
+  }
