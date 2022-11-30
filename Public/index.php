@@ -1,11 +1,6 @@
 <?php
 session_start();
-function conectar()
-{
-    $pdo = new PDO('mysql:host=localhost;dbname=projetotcc', 'root', '');
-
-    return $pdo;
-}
+require_once "../Class/conexao.php";
 
 $pdo = conectar();
 ?>
@@ -25,7 +20,7 @@ $pdo = conectar();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
     <title>Anju's</title>
     </head>    
     
@@ -37,7 +32,7 @@ $pdo = conectar();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
     <!-- header -->
-        <?php include "headerEfooter/header.inc.php"; ?>
+        <?php include "../Class/header.inc.php"; ?>
     <!-- body -->
     <section class="scroll">
         <div class="container">
@@ -45,7 +40,7 @@ $pdo = conectar();
             <div class="row align-items-center">
                 <div class="col-12 col-md-5 col-lg-5 order-md-1 imagem">
                     <!--image -->
-                    <img src="../Images/camisetabase.png" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0">
+                    <img src="../Images/camisetas/camisetabase.png" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0">
                 </div>
                 <div class="col-12 col-md-7 col-lg-6 order-md-1">
                     <h2>
@@ -97,7 +92,7 @@ $pdo = conectar();
         </div>
         </div>
     </section>
-    <?php include "headerEfooter/footer.inc.php"; ?>
+    <?php include "../Class/footer.inc.php"; ?>
     <script src="../JS/custom.js"></script>
     </body>
 </html>

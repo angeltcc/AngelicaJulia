@@ -1,11 +1,6 @@
 <?php
 session_start();
-function conectar()
-{
-    $pdo = new PDO('mysql:host=localhost;dbname=projetotcc', 'root', '');
-
-    return $pdo;
-}
+require_once "../Class/conexao.php";
 
 $pdo = conectar();
 ?>
@@ -27,12 +22,12 @@ $pdo = conectar();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">   
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
         <title>Anju's</title>
     </head>    
     <body>
     <!-- header -->
-    <?php include "headerEfooter/header2.inc.php"; ?>
+    <?php include "../Class/header2.inc.php"; ?>
     <!-- body -->
     <section>
         <div class="container">
@@ -40,5 +35,5 @@ $pdo = conectar();
         </div>
     </section>
     </body>
-    <?php include "headerEfooter/footer2.inc.php"; ?>
+    <?php include "../Class/footer2.inc.php"; ?>
 </html>

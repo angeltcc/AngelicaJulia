@@ -1,11 +1,6 @@
 <?php
 session_start();
-function conectar()
-{
-    $pdo = new PDO('mysql:host=localhost;dbname=projetotcc', 'root', '');
-
-    return $pdo;
-}
+require_once "../Class/conexao.php";
 
 $pdo = conectar();
 ?>
@@ -21,11 +16,11 @@ $pdo = conectar();
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/index2.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="preconnect" href="https://unpkg.com/aos@next/dist/aos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
     <title>Bem vindo!</title>
     </head>    
     
@@ -37,7 +32,7 @@ $pdo = conectar();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
     <!-- header -->
-        <?php include "headerEfooter/header2.inc.php"; ?>
+        <?php include "../Class/header2.inc.php"; ?>
     <!-- body -->
     <section class="scroll">
         <div class="container">
@@ -60,7 +55,7 @@ $pdo = conectar();
         </div>
     </section>
 
-    <?php include "headerEfooter/footer2.inc.php"; ?>
+    <?php include "../Class/footer2.inc.php"; ?>
     <script src="../JS/custom.js"></script>
     </body>
 </html>

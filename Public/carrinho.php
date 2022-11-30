@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once "conexao.php";
+include_once "../Class/conexao.php";
 
 $pdo = conectar();
 
@@ -12,7 +12,7 @@ $clientes = $stmtpr->fetch();
 //var_dump($clientes);
 
 if (!isset($_SESSION)) {
-	header('Location: login.php');
+	echo"<script> document.querySelector('#loginmodal').scrollIntoView(); </script>";
 } else {
 	$id_cliente = $_SESSION['nome'];
 }
@@ -61,7 +61,7 @@ if (isset($_GET['ac'])) {
 			}
 		}
 	}
-	header("Location: carrinho.php");
+	echo"<script> window.location.assign('../Public/Carrinho.php') </script>";
 }
 ?>
 
@@ -97,7 +97,7 @@ if (isset($_GET['ac'])) {
     </head>    
     <body>
     <!-- header -->
-    <?php include "headerEfooter/header.inc.php"; ?>
+    <?php include "../Class/header.inc.php"; ?>
     <!-- body -->
 	<body>
 		<section>
@@ -187,7 +187,7 @@ if (isset($_GET['ac'])) {
 					</div>
 				</div>
 					</section>
-					<?php include "headerEfooter/footer.inc.php";?>
+					<?php include "../Class/footer.inc.php";?>
 </body>
 
 </html>

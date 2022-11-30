@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "conexao.php";
+require_once "../Class/conexao.php";
 
 $pdo = conectar();
 $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
@@ -28,12 +28,12 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">      
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
         <title>Anju's</title>
     </head>    
     <body>
     <!-- header -->
-    <?php include "headerEfooter/header2.inc.php"; ?>
+    <?php include "../Class/header2.inc.php"; ?>
     <?php 
     
     ?>
@@ -41,14 +41,15 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     <section>
     <div class="prod-info">
         <div id="container">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="row align-items-center">
                 <div class="col fundo-img">
                     <label class="picture" for="picture-input" tabindex="0">
-                        <input type="file" name="imagem" accept="image/*" id="picture-input"/>
+                        <!-- <input type="file" name="imagem" accept="image/*" id="picture-input"/>-->
+                        <input type="file" name="imagem" />
                         <span class="picture-image">
                         </span>
-                    </label>
+                    </label> 
                 </div>
                 <div class="col fundo-info">
                 
@@ -68,7 +69,7 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                         <br>
 
                 <h6 id="tituloadd"> Cor</h6>
-                            <select id="categoria" name="cor" class="form-select form-select-md" required>
+                            <select id="cor" name="cor" class="form-select form-select-md" required>
                             <option selected> Selecionar...</option>
                             <option>Preto</option>
                             <option>Branco</option>
@@ -139,13 +140,16 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     </div>
     </section>
     </body>
-    <?php include "headerEfooter/footer2.inc.php"; ?>
+    <?php include "../Class/footer2.inc.php"; ?>
 </html>
 <?php 
                 if (isset($_POST['btnadd'])) {
     //echo'formulario enviado com sucesso';
 
-                    $imagem     = isset($_POST['imagem'])     ? $_POST['imagem']      : null;
+
+
+                    $img     = $_FILES['imagem'];
+                    $temp       = $img['tmp_name'];
                     $nome       = isset($_POST['nome'])       ? $_POST['nome']        : null;
                     $valor      = isset($_POST['valor'])      ? $_POST['valor']       : null;
                     $modelagem  = isset($_POST['modelagem'])  ? $_POST['modelagem']   : null;
@@ -154,11 +158,14 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                     $descricao  = isset($_POST['descricao'])  ? $_POST['descricao']   : null;
                     $estoque    = isset($_POST['estoque'])    ? $_POST['estoque']     : null;
                     $tamanho    = isset($_POST['tamanho'])    ? $_POST['tamanho']     : null;
-                
+
+
                     $sql = "INSERT INTO tb_produtos (imagem, nome_produto, valor, modelagem, categoria, cor, descricao, estoque, tamanho) VALUES (:i, :n , :v, :m, :c, :co, :d , :e, :t)";
     
                     $stmt = $pdo->prepare($sql);
-                    $stmt->bindParam(':i', $imagem);
+
+                    $img = "../Images/camisetas/".str_replace(" ", "_", $nome) . ".png";
+                    $stmt->bindParam(':i', $img);
                     $stmt->bindParam(':n', $nome);
                     $stmt->bindParam(':v', $valor);
                     $stmt->bindParam(':m', $modelagem);
@@ -168,14 +175,19 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                     $stmt->bindParam(':e', $estoque);
                     $stmt->bindParam(':t', $tamanho);
 
-                    if ($stmt->execute()){
+                    try {
+                        $stmt->execute();
+
+                        move_uploaded_file($temp, "../Images/camisetas/" . str_replace(" ", "_", $nome) . ".png");
+
                         echo "<script>alert('Produto adicionado!')</script>";
-                        exit();
-                    };
-                
+                        echo"<script> window.location.assign('../Admin/editarprodutos.php') </script>";
+                    } catch (PDOException $e) {
+                        echo "<script> alert('Não foi possível adicionar produto') </script>";
+                    }
+
+
+                    
                 }
-
-
-
 
                 ?>

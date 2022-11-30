@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "conexao.php";
+require_once "../Class/conexao.php";
 
 $pdo = conectar();
 $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
@@ -28,12 +28,12 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">      
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
         <title>Anju's</title>
     </head>    
     <body>
     <!-- header -->
-    <?php include "headerEfooter/header.inc.php"; ?>
+    <?php include "../Class/header.inc.php"; ?>
     <?php 
     $sqlpr = "SELECT * FROM tb_produtos where id_produto = $id_produto LIMIT 1";
     $stmtpr = $pdo->prepare($sqlpr);
@@ -121,5 +121,5 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     </div>
     </section>
     </body>
-    <?php include "headerEfooter/footer.inc.php"; ?>
+    <?php include "../Class/footer.inc.php"; ?>
 </html>

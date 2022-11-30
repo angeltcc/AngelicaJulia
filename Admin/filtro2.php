@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "conexao.php";
+    require_once "../Class/conexao.php";
     
     $pdo = conectar();
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -32,12 +32,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
         <title>Anju's</title>
     </head>    
 <body>
     <!-- header -->
-    <?php include "headerEfooter/header2.inc.php"; ?>
+    <?php include "../Class/header2.inc.php"; ?>
     <!-- body -->
     <section>
     <div class="barrabotao">
@@ -71,16 +71,33 @@
                 </datalist>
                 
                 <div class="gallery">
+                <div class="content2">         
+                <a href="../Admin/view-adicionar.php">
+                <button type="image">
+                    <img id="adicionar" src="../Images/Icons/iconadicionarbranco.png">
+                    </button>
+                </a>
+                </div>
                     <?php foreach ($tb_produtos as $p) { ?>
-                    <div class="content">
-                        <img class="produto" src="<?php echo $p['imagem']; ?>">
-                        <h3><?php echo $p['nome_produto']; ?></h3>
-                        <p class="p-produto"><?php echo $p['descricao']; ?></p>
-                        <h6><?php echo "R$ " . number_format ($p['valor'], 2, ",", ".") . "<br>"; ?></h6>
-                        <div class="cor">
-                            <a href="view-products.php?id=<?php echo $p['id_produto']; ?>" ><button class="buy">comprar</button></a>
+                        <div class="content">
+                    <img class="produto" src="<?php echo $p['imagem']; ?>">
+                    <h3><?php echo $p['nome_produto']; ?></h3>
+                    <p class="p-produto"><?php echo $p['descricao']; ?></p>
+                    <h6><?php echo "R$ " . number_format ($p['valor'], 2, ",", ".") . "<br>"; ?></h6>
+                    <div class="cor">
+                       <!-- <a href="view-editprod.php?id=<?php //echo $p['id_produto']; ?>" ><button class="buy">editar</button></a> -->
+                        <div class="btn-group">
+                            <a href="view-editprod.php?id=<?php echo $p['id_produto']; ?>"><button style="margin-left: -10px;" type="button" class="alterar">
+                            <img src="../Images/editar.png" style="width: 50px;">                          
+                            </button></a>
+                            
+                            <a href="../Class/delete.php?id=<?php echo $p['id_produto']; ?>" onclick="return confirm('Tem certeza que deseja deletar este registro?')"><button type="submit" class="alterar" name="delete">
+                            <img src="../Images/excluirprod.png" style="width: 50px;">
+                            </button></a>
+
                         </div>
                     </div>
+                </div> 
                     <?php } 
             }else{ echo "<div class='container'>
                 <div class='row justify-content-md-center'>
@@ -89,6 +106,8 @@
                 </div>
                 </div>"; } 
             } ?>
+
+
 
 <?php         
 
@@ -152,23 +171,41 @@
                     $stmt->bindParam(15, $cor_ver);                          
                     $stmt->bindParam(16, $cor_azu);
                     $stmt->bindParam(17, $cor_cin); 
-                } 
-
+                }
+    
                 $stmt->execute();
                 $produto = $stmt->fetchAll();  
 
                 ?>
                 <div class="gallery">
+
+                <div class="content2">         
+                <a href="../Admin/view-adicionar.php">
+                <button type="image">
+                    <img id="adicionar" src="../Images/Icons/iconadicionarbranco.png">
+                    </button>
+                </a>
+                </div>
                     <?php foreach ($produto as $p) { ?>
-                    <div class="content">
-                        <img class="produto" src="<?php echo $p['imagem']; ?>">
-                        <h3><?php echo $p['nome_produto']; ?></h3>
-                        <p class="p-produto"><?php echo $p['descricao']; ?></p>
-                        <h6><?php echo "R$ " . number_format ($p['valor'], 2, ",", ".") . "<br>"; ?></h6>
-                        <div class="cor">
-                            <a href="view-products.php?id=<?php echo $p['id_produto']; ?>" ><button class="buy">comprar</button></a>
+                        <div class="content">
+                    <img class="produto" src="<?php echo $p['imagem']; ?>">
+                    <h3><?php echo $p['nome_produto']; ?></h3>
+                    <p class="p-produto"><?php echo $p['descricao']; ?></p>
+                    <h6><?php echo "R$ " . number_format ($p['valor'], 2, ",", ".") . "<br>"; ?></h6>
+                    <div class="cor">
+                       <!-- <a href="view-editprod.php?id=<?php //echo $p['id_produto']; ?>" ><button class="buy">editar</button></a> -->
+                        <div class="btn-group">
+                            <a href="view-editprod.php?id=<?php echo $p['id_produto']; ?>"><button style="margin-left: -10px;" type="button" class="alterar">
+                            <img src="../Images/editar.png" style="width: 50px;">                          
+                            </button></a>
+                            
+                            <a href="../Class/delete.php?id=<?php echo $p['id_produto']; ?>" onclick="return confirm('Tem certeza que deseja deletar este registro?')"><button type="submit" class="alterar" name="delete">
+                            <img src="../Images/excluirprod.png" style="width: 50px;">
+                            </button></a>
+
                         </div>
                     </div>
+                </div> 
                     <?php }   
                 }
                 ?>  
@@ -178,7 +215,7 @@
 <div class="modal fade" id="filtro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">          
-            <form action="filtro.php" name="filtro" method="post">
+            <form action="filtro2.php" name="filtro" method="post">
             <div class="modal-body">
                 <h1 id="lilas" class="text-center"> Categorias </h1>
                     <div class="form-check">
@@ -300,5 +337,5 @@
 </div>
     </section>            
 </body>
-<?php include "headerEfooter/footer2.inc.php"; ?>
+<?php include "../Class/footer2.inc.php"; ?>
 </html>

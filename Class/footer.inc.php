@@ -2,17 +2,17 @@
     <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
         <div class="col mb-3">
             <a href="#" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-            <img id="logo" src="imagens/logo1.png" alt="angelicajulia">
+            <img id="logo" src="../Images/logo1.png" alt="angelicajulia">
             </a>
             <p class="pfooter">Todos os direitos reservados © 2022</p>
             <a href="https://facebook.com">
-            <img src="imagens/icons8-facebook-num-círculo.svg">
+            <img src="../Images/Icons/icons8-facebook-num-círculo.svg">
             </a>
             <a href="https://twitter.com">
-            <img src="imagens/icons8-twitter.svg">
+            <img src="../Images/Icons/icons8-twitter.svg">
             </a>
             <a href="https://www.instagram.com">
-            <img src="imagens/icons8-instagram.svg">
+            <img src="../Images/Icons/icons8-instagram.svg">
             </a>
         </div>
 

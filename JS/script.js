@@ -17,52 +17,31 @@ function executar(){
     }
 }
 
-const form = document.querySelector('.add');
-const formInitialHeight = form.clientHeight;
-const overflow = document.querySelector ('.overflow');
-const btn = document.querySelector('.toggle');
-
-btn.addEventListener('click', initToggle);
-
-function initToggle(e){
-    form.style.maxHeight = 
-    e.target.dataset.state === 'more'
-    ? '${form.scrollHeight}px'
-    : '${formInitialHeight}px' ;
-
-    overflow.setAttribute(
-        'data-state',
-        e.target.dataset.state === 'more' ? 'visible' :'hidden'
-    )
-    
-}
-
-const inputFile = 
-document.querySelector('#picture-input');
-const pictureImage =
-document.querySelector('.picture-img');
-const pictureImageTxt = 'Escolha uma foto';
+const inputFile = document.querySelector("#picture-input");
+const pictureImage = document.querySelector(".picture-image");
+const pictureImageTxt = "Choose an image";
 pictureImage.innerHTML = pictureImageTxt;
 
-inputFile.addEventListener('change', function(e){
-    const inputTarget = e.target;
-    const file = inputTarget.files[0];
+inputFile.addEventListener("change", function (e) {
+  const inputTarget = e.target;
+  const file = inputTarget.files[0];
 
-    if (file) {
-        const reader = new FileReader();
+  if (file) {
+    const reader = new FileReader();
 
-        reader.addEventListener('load', function(e){
-            const readerTarget = e.target;
+    reader.addEventListener("load", function (e) {
+      const readerTarget = e.target;
 
-            const img = document.createElement('img');
-            img.src = readerTarget.result;
-            img.classList.add('picture-img');
+      const img = document.createElement("img");
+      img.src = readerTarget.result;
+      img.classList.add("picture-img");
 
-            pictureImage.appendChild(img);
-        });
+      pictureImage.innerHTML = "";
+      pictureImage.appendChild(img);
+    });
 
-        reader.readAsDataURL(file);
-    } else {
-        pictureImage.innerHTML = pictureImageTxt;
-    }
+    reader.readAsDataURL(file);
+  } else {
+    pictureImage.innerHTML = pictureImageTxt;
+  }
 });

@@ -10,17 +10,9 @@ html {
     transition: max-height 0.4s ease;
 }
 
-.overflow {
-    display: none;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30px;
-}
-
-.overflow[data-state="visible"] {
-    display: block;
+.dropdown-item{
+    width: 91% !important;
+    text-align: center;
 }
 
 .add.active{
@@ -261,6 +253,16 @@ h1.sobre {
     border-top: 0px !important;
 }
 
+.fundo{
+    background-color: #fff;
+    border-radius: 10px;
+    color: black;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 8%),
+    0 10px 10px rgba(0, 0, 0, 5%);
+    padding: 5rem;
+    min-height: 100vh;
+}
+
 #button {
     margin-top: 2rem;
     background-color: #000;
@@ -289,6 +291,7 @@ h1.sobre {
 #lilas{
     color: #806de7 !important;
 }
+
 /*media screen*/
 @media screen and (max-width: 992px) {
     .imagem {

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "conexao.php";
+require_once "../Class/conexao.php";
 
 $pdo = conectar();
 $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
@@ -29,13 +29,13 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
     <title>Anju's</title>
 </head>
 
 <body>
     <!-- header -->
-    <?php include "headerEfooter/header2.inc.php"; ?>
+    <?php include "../Class/header2.inc.php"; ?>
     <?php
     $sqlpr = "SELECT * FROM tb_produtos where id_produto = $id_produto LIMIT 1";
     $stmtpr = $pdo->prepare($sqlpr);
@@ -101,6 +101,14 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                             </select>
                             <br>
 
+                            <h6 id="tituloadd"> Modelagem </h6>
+                            <select id="categoria" name="modelagem" style="text-align: center;" class="form-select form-select-md">
+                                <option selected> <?php echo $modelagem; ?></option>
+                                <option>Regular</option>
+                                <option>Baby look</option>
+                            </select>
+                            <br>
+
                             <h6 id="tituloadd"> Tamanho </h6>
                             <select id="tamanho" name="tamanho" style="text-align: center;" class="form-select form-select-md">
                                 <option selected> <?php echo $tamanho; ?></option>
@@ -133,7 +141,7 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
         </div>
     </section>
 </body>
-<?php include "headerEfooter/footer2.inc.php"; ?>
+<?php include "../Class/footer2.inc.php"; ?>
 
 </html>
 <?php
@@ -146,16 +154,17 @@ if (isset($_POST['btnsalvar'])) {
     $produto = $stmt->fetchAll();
     
 
-    $nome       = $_POST['nome'] != null            ? $_POST['nome']        : $produto[0]['nome_produto'];
+    $nome       = $_POST['nome'] != null             ? $_POST['nome']        : $produto[0]['nome_produto'];
     $valor      = $_POST['valor'] != null            ? $_POST['valor']       : $produto[0]['valor'];
     $descricao  = $_POST['descricao'] != null        ? $_POST['descricao']   : $produto[0]['descricao'];
     $categoria  = $_POST['categoria'] != null        ? $_POST['categoria']   : $produto[0]['categoria'];
+    $modelagem  = $_POST['modelagem'] != null        ? $_POST['modelagem']   : $produto[0]['modelagem'];
     $tamanho    = $_POST['tamanho'] != null          ? $_POST['tamanho']     : $produto[0]['tamanho'];
     $cor        = $_POST['cor'] != null              ? $_POST['cor']         : $produto[0]['cor'];
 
 
 
-    $sql = "UPDATE tb_produtos SET nome_produto = ?, valor = ?, descricao = ?, categoria = ?, tamanho = ?, cor = ? 
+    $sql = "UPDATE tb_produtos SET nome_produto = ?, valor = ?, descricao = ?, categoria = ?, modelagem = ?, tamanho = ?, cor = ? 
     WHERE tb_produtos.id_produto = $id_produto";
 
     $stmt = $pdo->prepare($sql);
@@ -163,12 +172,13 @@ if (isset($_POST['btnsalvar'])) {
     $stmt->bindParam(2, $valor);
     $stmt->bindParam(3, $descricao);
     $stmt->bindParam(4, $categoria);
-    $stmt->bindParam(5, $tamanho);
-    $stmt->bindParam(6, $cor);
+    $stmt->bindParam(5, $modelagem);
+    $stmt->bindParam(6, $tamanho);
+    $stmt->bindParam(7, $cor);
     try {
         $stmt->execute();
         echo "<script> alert('Produto alterado com sucesso') </script>";
-        header('Location: editarprodutos.php');
+        echo"<script> window.location.assign('../Admin/editarprodutos.php') </script>";
     } catch (PDOException $e) {
         echo "<script> alert('Não foi possível alterar produto') </script>";
     }

@@ -7,7 +7,7 @@ if (!isset($_SESSION)) {
 	$id_cliente = $_SESSION['nome'];
 }
 
-include_once "conexao.php";
+include_once "../Class/conexao.php";
 
 $pdo = conectar();
 
@@ -54,7 +54,7 @@ if (isset($_GET['ac'])) {
 			}
 		}
 	}
-	header("Location: carrinho2.php");
+	header("Location: ../Public/carrinho2.php");
 }
 ?>
 
@@ -77,7 +77,7 @@ if (isset($_GET['ac'])) {
     </head>    
     <body>
     <!-- header -->
-    <?php include "headerEfooter/header.inc.php"; ?>
+    <?php include "../Class/header.inc.php"; ?>
     <!-- body -->
 	<body>
 		<section>
@@ -198,7 +198,7 @@ if (isset($_POST['finalizaVenda'])) {
 		unset($_SESSION['carrinho']);
 		unset($_SESSION['valor_total']);
 
-		header("Location: personalizado.php");
+		header("Location: ../Public/personalizado.php");
 	}
 }
 ?>

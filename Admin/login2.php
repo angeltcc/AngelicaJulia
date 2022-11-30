@@ -73,9 +73,9 @@ if (isset($_POST['btnlogin'])) {
         $_SESSION['id']    = $user['id_cliente'];
 
         if ($_SESSION['nivel'] == 1) {
-            echo"<script> window.location.assign('index2.php') </script>";
+            echo"<script> window.location.assign('../Admin/index2.php') </script>";
            } else {
-            echo"<script> window.location.assign('index.php') </script>";
+            echo"<script> window.location.assign('../Public/index.php') </script>";
             }
         }
 

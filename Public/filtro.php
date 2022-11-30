@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "conexao.php";
+    require_once "../Class/conexao.php";
     
     $pdo = conectar();
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -32,12 +32,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
         <title>Anju's</title>
     </head>    
 <body>
     <!-- header -->
-    <?php include "headerEfooter/header.inc.php"; ?>
+    <?php include "../Class/header.inc.php"; ?>
     <!-- body -->
     <section>
     <div class="barrabotao">
@@ -73,14 +73,17 @@
                 <div class="gallery">
                     <?php foreach ($tb_produtos as $p) { ?>
                     <div class="content">
-                        <img class="produto" src="<?php echo $p['imagem']; ?>">
-                        <h3><?php echo $p['nome_produto']; ?></h3>
-                        <p class="p-produto"><?php echo $p['descricao']; ?></p>
-                        <h6><?php echo "R$ " . number_format ($p['valor'], 2, ",", ".") . "<br>"; ?></h6>
-                        <div class="cor">
-                            <a href="view-products.php?id=<?php echo $p['id_produto']; ?>" ><button class="buy">comprar</button></a>
-                        </div>
+                    <img class="produto" src="<?php echo $p['imagem']; ?>">
+                    <h3><?php echo $p['nome_produto']; ?></h3>
+                    <p class="p-produto"><?php echo $p['descricao']; ?></p>
+                    <h6><?php echo "R$ " . number_format ($p['valor'], 2, ",", ".") . "<br>"; ?></h6>
+                    <div class="cor">
+                        <a href="view-products.php?id=<?php echo $p['id_produto']; ?>" ><button class="buy">
+
+                        <img src="../Images/Icons/iconadicionarbranco.png" style="width: 40px;"><img>
+                        </button></a>
                     </div>
+                </div> 
                     <?php } 
             }else{ echo "<div class='container'>
                 <div class='row justify-content-md-center'>
@@ -154,73 +157,7 @@
                     $stmt->bindParam(15, $cor_ver);                          
                     $stmt->bindParam(16, $cor_azu);
                     $stmt->bindParam(17, $cor_cin); 
-                } /*
-
-                if (isset($_POST['btnfiltro'])){
-                    $cat_min = isset($_POST['minimalista']) ? "minimalista" : "XXXXXXXXXXXXX";
-                    $cat_med  = ( isset($_POST['medio']) )  ? "medio" : "XXXXXXXXXXXXX";
-                    $cat_ext  = ( isset($_POST['extravagante']) )  ? "extravagante" : "XXXXXXXXXXXXX";
-    
-                    if($cat_min == "XXXXXXXXXXXXX" AND $cat_med == "XXXXXXXXXXXXX" AND $cat_ext == "XXXXXXXXXXXXX")
-                    {
-                        $sql = 'SELECT * FROM tb_produtos';
-                        $stmt = $pdo->prepare($sql);
-                    }
-                    else
-                    {
-                        $sql = 'SELECT * FROM tb_produtos WHERE categoria = ? OR categoria = ? OR categoria = ?';
-        
-                        $stmt = $pdo->prepare($sql);
-    
-                        $stmt->bindParam(1, $cat_min);
-                        $stmt->bindParam(2, $cat_med);
-                        $stmt->bindParam(3, $cat_ext);
-                    }
-
-                    if (isset($_POST['btnfiltro'])){
-                        $mod_reg  = ( isset($_POST['regular']) )  ? "regular" : "XXXXXXXXXXXXX";
-                        $mod_bab  = ( isset($_POST['baby look']) )  ? "baby look" : "XXXXXXXXXXXXX";
-        
-                        if($mod_reg == "XXXXXXXXXXXXX" AND $mod_bab == "XXXXXXXXXXXXX")
-                        {
-                            $sql = 'SELECT * FROM tb_produtos';
-                            $stmt = $pdo->prepare($sql);
-                        }
-                        else
-                        {
-                            $sql = 'SELECT * FROM tb_produtos WHERE modelagem = ? OR modelagem = ? OR modelagem = ?';
-            
-                            $stmt = $pdo->prepare($sql);
-        
-                            $stmt->bindParam(1, $mod_reg);
-                            $stmt->bindParam(2, $mod_bab);
-                        }
-
-                        if (isset($_POST['btnfiltro'])){
-                            $cor_pre  = ( isset($_POST['preto']) )  ? "preto" : "XXXXXXXXXXXXX";
-                            $cor_bra  = ( isset($_POST['branco']) )  ? "branco" : "XXXXXXXXXXXXX";
-                            $cor_ver  = ( isset($_POST['vermelho']) )  ? "vermelho" : "XXXXXXXXXXXXX";
-                            $cor_azu  = ( isset($_POST['azul']) )  ? "azul" : "XXXXXXXXXXXXX";
-                            $cor_cin  = ( isset($_POST['cinza']) )  ? "cinza" : "XXXXXXXXXXXXX";
-            
-                            if($cor_pre == "XXXXXXXXXXXXX" AND $cor_bra == "XXXXXXXXXXXXX" AND $cor_ver == "XXXXXXXXXXXXX" AND $cor_azu == "XXXXXXXXXXXXX" AND $cor_cin == "XXXXXXXXXXXXX")
-                            {
-                                $sql = 'SELECT * FROM tb_produtos';
-                                $stmt = $pdo->prepare($sql);
-                            }
-                            else
-                            {
-                                $sql = 'SELECT * FROM tb_produtos WHERE cor = ? OR cor = ? OR cor = ?';
-                
-                                $stmt = $pdo->prepare($sql);
-            
-                                $stmt->bindParam(1, $cor_pre);
-                                $stmt->bindParam(2, $cor_bra);
-                                $stmt->bindParam(3, $cor_ver);                          
-                                $stmt->bindParam(4, $cor_azu);
-                                $stmt->bindParam(5, $cor_cin);
-                            } */
-                        
+                }
     
                 $stmt->execute();
                 $produto = $stmt->fetchAll();  
@@ -228,20 +165,20 @@
                 ?>
                 <div class="gallery">
                     <?php foreach ($produto as $p) { ?>
-                    <div class="content">
-                        <img class="produto" src="<?php echo $p['imagem']; ?>">
-                        <h3><?php echo $p['nome_produto']; ?></h3>
-                        <p class="p-produto"><?php echo $p['descricao']; ?></p>
-                        <h6><?php echo "R$ " . number_format ($p['valor'], 2, ",", ".") . "<br>"; ?></h6>
-                        <div class="cor">
-                            <a href="view-products.php?id=<?php echo $p['id_produto']; ?>" ><button class="buy">comprar</button></a>
-                        </div>
+                        <div class="content">
+                    <img class="produto" src="<?php echo $p['imagem']; ?>">
+                    <h3><?php echo $p['nome_produto']; ?></h3>
+                    <p class="p-produto"><?php echo $p['descricao']; ?></p>
+                    <h6><?php echo "R$ " . number_format ($p['valor'], 2, ",", ".") . "<br>"; ?></h6>
+                    <div class="cor">
+                        <a href="view-products.php?id=<?php echo $p['id_produto']; ?>" ><button class="buy">
+
+                        <img src="../Images/Icons/iconadicionarbranco.png" style="width: 40px;"><img>
+                        </button></a>
                     </div>
+                </div> 
                     <?php }   
                 }
-          /*  }
-        }
-    }*/
                 ?>  
                 </div>
 
@@ -371,5 +308,5 @@
 </div>
     </section>            
 </body>
-<?php include "headerEfooter/footer.inc.php"; ?>
+<?php include "../Class/footer.inc.php"; ?>
 </html>

@@ -2,7 +2,7 @@
 
 session_start();
 
-include 'conexao.php';
+require_once "../Class/conexao.php";
 
 $pesquisa = $_GET['txtbuscar'];
 $consulta = $pdo->query("select * from tb_produtos where nome_produto like concat ('%','$pesquisa','%') || 

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once "conexao.php";
+include_once "../Class/conexao.php";
 
 $pdo = conectar();
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "conexao.php";
+require_once "../Class/conexao.php";
 
 $pdo = conectar();
 
@@ -32,12 +32,12 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
         <title>Anju's</title>
     </head>    
     <body>
     <!-- header -->
-    <?php include "headerEfooter/header2.inc.php"; ?>
+    <?php include "../Class/header2.inc.php"; ?>
     <!-- body -->
     <section>
     <div class="barrabotao">
@@ -75,9 +75,9 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                 
                 <div class="gallery">
             <div class="content2">         
-            <a href="view-adicionar.php">
+            <a href="../Admin/view-adicionar.php">
             <button type="image">
-                    <img id="adicionar" src="../Images/iconadicionarbranco.png">
+                  <img id="adicionar" src="../Images/Icons/iconadicionarbranco.png">
                 </button>
             </a>
             </div>
@@ -329,5 +329,5 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
         </div>
         </div>
     </body>
-    <?php include "headerEfooter/footer2.inc.php"; ?>
+    <?php include "../Class/footer2.inc.php"; ?>
 </html>

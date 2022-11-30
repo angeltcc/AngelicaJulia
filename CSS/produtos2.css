@@ -32,19 +32,10 @@
     display: block;
 }
 
-.produto:hover {
-    background-image: url(imagens/excluirprod.png);
-}
-
-
 #adicionar {
     width: 8rem;
     margin-top: 8rem;
     text-align: center;
-}
-
-#adicionar:hover {
-    background-image: url(imagens/iconadicionarpreto.png) !important;
 }
 
 h3 {
