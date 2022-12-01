@@ -33,7 +33,7 @@ $pdo = conectar();
 <div class="container" style="margin-top: 3rem;" id="localizacao">
     <div class="content">
             <div class="container">
-                <div style="text-align:center;">
+                <div>
                 <button type="image" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                 aria-expanded="false" aria-controls="collapseExample" > <img src="../Images/Icons/icons8-adicionar-100.png" height="70px"/> </button>
                 <span class="fs-4" id="lilas" style="padding-left: 2rem;"> adicionar localização </span> 

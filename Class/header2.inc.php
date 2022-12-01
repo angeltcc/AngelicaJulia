@@ -36,7 +36,7 @@
                     </ul>
                 </div>
                 <!--abrir pagina normal para poder realizar compras-->
-                <a type="image" href="../Public/index.php" style="margin-right: 2rem;"> 
+                <a type="image" href="../Public/carrinho.php" style="margin-right: 2rem;"> 
                     <img src="../Images/Icons/icons8-carrinho-de-compras-100.png" height ="40" width="40"/> 
                     <!--<p class="descricao"> carrinho </p> -->
                 </a>
@@ -57,7 +57,8 @@
                     style="margin-left: -20px;"	data-bs-target="#cadastromodal">Cadastro</button></li>
 
                     <li><hr class="dropdown-divider" style="margin-left: -20px;"></li>
-                    <li><a href="#"><button class="dropdown-item" type="button" style="margin-left: -20px;">Sair</button></a></li>
+                    <li><a href="../Class/logout.php" onclick="return confirm('Tem certeza que deseja sair?')">
+                    <button class="dropdown-item" type="button" style="margin-left: -20px;">Sair</button></a></li>
                 </ul>
                 </div>
             </nav>
@@ -65,7 +66,6 @@
     </header>
     <?php include "../Admin/login2.php"; ?>
     <?php include "../Admin/cadastro2.php"; ?>
-    <?php include "../Public/localizacao.php"; ?>
 
     
 
