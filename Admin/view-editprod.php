@@ -49,34 +49,22 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     <section>
         <div class="prod-info">
             <div id="container">
+            <form method="post" enctype="multipart/form-data">
                 <div class="row align-items-center">
                     <div class="col fundo-img">
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-interval="3000000">
+                        
+                            
+                                
                                     <img src="<?php echo $imagem; ?>" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item" data-bs-interval="3000000">
-                                    <img src="<?php echo $imagem; ?>" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item" data-bs-interval="3000000">
-                                    <img src="<?php echo $imagem; ?>" class="d-block w-100" alt="...">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
+                                    <div class="mb-3">
+                                    <label for="formFile" class="form-label"></label>
+                                    <input class="form-control" type="file" name="imagem" id="formFile">
+                                    </div>
+                            
+                        
                         <!--<img src="../Images/camisetabase.png" class="img-fluid mw-md-50 mw-lg-30 mb-6 mb-md-0">-->
                     </div>
                     <div class="col fundo-info">
-
-                        <form method="POST">
 
                             <h6 id="tituloadd"> Nome </h6>
                             <input class="form-control form-control-md" placeholder="<?php echo $nome_produto; ?>" aria-label=".form-control-md example" type="text" style="text-align: center;" name="nome" maxlength="45" />
@@ -153,7 +141,8 @@ if (isset($_POST['btnsalvar'])) {
 
     $produto = $stmt->fetchAll();
     
-
+    $img     = $_FILES['imagem'];
+    $temp       = $img['tmp_name'];
     $nome       = $_POST['nome'] != null             ? $_POST['nome']        : $produto[0]['nome_produto'];
     $valor      = $_POST['valor'] != null            ? $_POST['valor']       : $produto[0]['valor'];
     $descricao  = $_POST['descricao'] != null        ? $_POST['descricao']   : $produto[0]['descricao'];
@@ -168,15 +157,19 @@ if (isset($_POST['btnsalvar'])) {
     WHERE tb_produtos.id_produto = $id_produto";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(1, $nome);
-    $stmt->bindParam(2, $valor);
-    $stmt->bindParam(3, $descricao);
-    $stmt->bindParam(4, $categoria);
-    $stmt->bindParam(5, $modelagem);
-    $stmt->bindParam(6, $tamanho);
-    $stmt->bindParam(7, $cor);
+
+    $img = "../Images/camisetas/".str_replace(" ", "_", $nome) . ".png";
+    $stmt->bindParam(1, $img);
+    $stmt->bindParam(2, $nome);
+    $stmt->bindParam(3, $valor);
+    $stmt->bindParam(4, $descricao);
+    $stmt->bindParam(5, $categoria);
+    $stmt->bindParam(6, $modelagem);
+    $stmt->bindParam(7, $tamanho);
+    $stmt->bindParam(8, $cor);
     try {
         $stmt->execute();
+        move_uploaded_file($temp, "../Images/camisetas/" . str_replace(" ", "_", $nome) . ".png");
         echo "<script> alert('Produto alterado com sucesso') </script>";
         echo"<script> window.location.assign('../Admin/editarprodutos.php') </script>";
     } catch (PDOException $e) {
