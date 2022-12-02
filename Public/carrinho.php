@@ -32,24 +32,25 @@ $clientes = $stmtpr->fetch();
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script src="js/jquery.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-		
+	<script src="js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
 	<link rel="stylesheet" href="../CSS/index.css">
+	<link rel="shortcut icon" href="../favicon.ico">
 	<title>carrinho</title>
 </head>
 
-	<!-- header -->
-	<?php include "../Class/header.inc.php"; ?>
-	<!-- body -->
+<!-- header -->
+<?php include "../Class/header.inc.php"; ?>
+<!-- body -->
 
-	<?php
+<?php
 
 
-	if (!isset($_SESSION['nome'])) {
-		echo '
+if (!isset($_SESSION['nome'])) {
+	echo '
 	
     <!-- modal login -->
 <div class="modal fade show" id="loginmodal" aria-labelledby="exampleModalToggleLabel" tabindex="-1" aria-modal="true" role="dialog" style="display: block;">
@@ -159,57 +160,59 @@ $clientes = $stmtpr->fetch();
 
 
 <div class="modal-backdrop fade show"></div></body>';
-	} else {
-		?> <body> <?php 
-		$id_cliente = $_SESSION['nome'];
+} else {
+?>
 
-		// Consulta os dados da produto 
-		$sql        = "SELECT * FROM tb_clientes WHERE id_cliente = :id";
-		$stmt = $pdo->prepare($sql);
-		$stmt->bindValue('id', $id_cliente);
-		$stmt->execute();
-		$sql = $stmt->fetch();
+	<body> <?php
+			$id_cliente = $_SESSION['nome'];
 
-		if (!isset($_SESSION['carrinho'])) {
-			$_SESSION['carrinho'] = array();
-		}
+			// Consulta os dados da produto 
+			$sql        = "SELECT * FROM tb_clientes WHERE id_cliente = :id";
+			$stmt = $pdo->prepare($sql);
+			$stmt->bindValue('id', $id_cliente);
+			$stmt->execute();
+			$sql = $stmt->fetch();
 
-		if (isset($_GET['ac'])) {
-
-			// adiciona ao carrinho
-
-			if ($_GET['ac'] == 'add') {
-				$id = intval($_GET['id']);
-				if (!isset($_SESSION['carrinho'][$id])) {
-					$_SESSION['carrinho'][$id] = 1;
-				} else {
-					$_SESSION['carrinho'][$id] += 1;
-				}
+			if (!isset($_SESSION['carrinho'])) {
+				$_SESSION['carrinho'] = array();
 			}
 
-			if ($_GET['ac'] == 'del') {
-				$id = intval($_GET['id']);
-				if (isset($_SESSION['carrinho'][$id])) {
-					unset($_SESSION['carrinho'][$id]);
-				}
-			}
+			if (isset($_GET['ac'])) {
 
-			if ($_GET['ac'] == 'up' && count($_SESSION['carrinho']) != 0) {
-				if (is_array($_POST['prod'])) {
-					foreach ($_POST['prod'] as $id => $qtd) {
-						$id = intval($id);
-						$qtd = intval($qtd);
-						if (!empty($qtd) || $qtd <> 0) {
-							$_SESSION['carrinho'][$id] = $qtd;
-						} else {
-							unset($_SESSION['carrinho'][$id]);
+				// adiciona ao carrinho
+
+				if ($_GET['ac'] == 'add') {
+					$id = intval($_GET['id']);
+					if (!isset($_SESSION['carrinho'][$id])) {
+						$_SESSION['carrinho'][$id] = 1;
+					} else {
+						$_SESSION['carrinho'][$id] += 1;
+					}
+				}
+
+				if ($_GET['ac'] == 'del') {
+					$id = intval($_GET['id']);
+					if (isset($_SESSION['carrinho'][$id])) {
+						unset($_SESSION['carrinho'][$id]);
+					}
+				}
+
+				if ($_GET['ac'] == 'up' && count($_SESSION['carrinho']) != 0) {
+					if (is_array($_POST['prod'])) {
+						foreach ($_POST['prod'] as $id => $qtd) {
+							$id = intval($id);
+							$qtd = intval($qtd);
+							if (!empty($qtd) || $qtd <> 0) {
+								$_SESSION['carrinho'][$id] = $qtd;
+							} else {
+								unset($_SESSION['carrinho'][$id]);
+							}
 						}
 					}
 				}
+				echo "<script> window.location.assign('../Public/Carrinho.php') </script>";
 			}
-			echo "<script> window.location.assign('../Public/Carrinho.php') </script>";
-		}
-	?>
+			?>
 		<section>
 			<div class="container w-100 p-3">
 				<div class="row justify-content-md-center">
@@ -300,46 +303,59 @@ $clientes = $stmtpr->fetch();
 		<?php include "../Class/footer.inc.php"; ?>
 
 	<?php
-	} ?>
+} ?>
 
-</body>
+	</body>
 
 </html>
 <?php
-/*if (isset($_POST['finalizaVenda'])) {
+if (isset($_POST['finalizaVenda'])) {
 
-	$Movimentos = array(
-		'tipo' => "S",
-		'cliente' => (int) $_SESSION['cliente'],
-		'dataCompra' => date('Y-m-d'),
-		'valorTotal' => $_SESSION['valor_total']
-	);
-
-	$movimento   = $crud->insert($Movimentos);
-
-	$_SESSION['ultimoId'] = $movimento[1];
-	//var_dump($_SESSION);
+	$stm = $pdo->prepare("INSERT INTO tb_vendas (cliente, data_venda) values (?,?)");
+	$stm->bindValue(1, (int) $_SESSION['id']);
+	$stm->bindValue(2, date('Y-m-d'));
+	$stm->execute();
 
 	//inserindo os itens comprados 
 	foreach ($_SESSION['carrinho'] as $id => $qtd) {
 
-		$stmt = $pdo->prepare("insert into tb_vendas (id_venda, data_venda, cliente) values (?,?,?)");
+		$stm = $pdo->prepare("SELECT estoque FROM tb_produtos WHERE id_produto = ?");
+		$stm->bindValue(1, $id);
+		$stm->execute();
+
+		$estoque =  $stm->fetch();
+		if ($estoque[0] < $qtd) {
+			echo "<script> alert('Um dos pedidos não estão disponíveis na quandidade selecionada') </script>";
+			exit();
+		}
+
+		if ($qtd <= 0) {
+			echo "<script> alert('Você não pode inserir produtos de valores negativos ou nulos') </script>";
+			exit();
+		}
+
+		$stm = $pdo->prepare("SELECT id_venda FROM tb_vendas ORDER BY id_vendas DESC LIMIT 1");
+		$stm->execute();
+
+		$ultimoid = $stm->fetch();
+
+		$_SESSION['ultimoId'] = $ultimoid[0];
+
+		$stmt = $pdo->prepare("insert into tb_vendaprodutos (venda, produto, quantidade) values (?,?,?)");
 		$stmt->bindValue('1', $_SESSION["ultimoId"]);
 		$stmt->bindValue('2', $id);
 		$stmt->bindValue('3', $qtd);
 		$stmt->execute();
 
-		$stmt = $pdo->prepare("insert into tb_vendaprodutos (venda, produto, cliente, quantidade) values (?,?,?)");
-		$stmt->bindValue('1', $_SESSION["ultimoId"]);
-		$stmt->bindValue('2', $id);
-		$stmt->bindValue('3', $qtd);
-		$stmt->execute();
-
+		$stm = $pdo->prepare("UPDATE produtos SET estoque = (estoque - ?) WHERE idproduto = ?");
+		$stm->bindValue(1, $qtd);
+		$stm->bindValue(2, $id);
+		$stm->execute();
 
 		unset($_SESSION['carrinho']);
 		unset($_SESSION['valor_total']);
 
-		header("Location: produtos.php");
+		header("Location: ../Public/produtos.php");
 	}
-} */
+}
 ?>

@@ -47,16 +47,16 @@ $id_materia = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     <section>
     <div class="prod-info">
         <div id="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col fundo-img">
-                            <img src="<?php echo $imagem; ?>" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" alt="...">
-                    
-                    <!--<img src="../Images/camisetas/camisetabase.png" class="img-fluid mw-md-50 mw-lg-30 mb-6 mb-md-0">-->
+                    <img src="<?php echo $imagem; ?>" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" alt="...">
                 </div>
                 <div class="col fundo-info">
                     <h6 id="titulo"><?php echo $nome; ?></h6>
                     <h6 id="preco"><?php echo "R$ " . number_format ($valor, 2, ",", ".") . "<br>"; ?></h6>
-                    <form method="POST" action="email.php">
+                    
+                    <?php if (isset($_SESSION['nome'])) { 
+                        echo "<form method='POST' action='../Class/email.php'>";} ?>
                     <div class="form">
                     <textarea class="form-control" name="descricao" placeholder="Descreva a estampa e o lugar onde deve ser colocado" id="floatingTextarea2" style="height: 100px" required></textarea>
                     <label for="floatingTextarea2"></label>
@@ -99,14 +99,24 @@ $id_materia = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                             <label class="form-check-label" for="inlineRadio2"> EGG </label>
                         </div>
                         <br>
-                        <button id="button" name="btnpedido" type="submit">enviar pedido</button> 
+                        <?php if (!isset($_SESSION['nome'])) {
+	                    echo '<button id="button" data-bs-target="#loginmodal" data-bs-toggle="modal" name="btnpedido" 
+                        type="submit">enviar pedido</button>'; }
+                        else {
+                            echo '<button id="button" name="btnpedido" type="submit">enviar pedido</button>';
+                        }?>
+                         
+
+
                         <!--<a href="carrinho2.php?ac=add&id= <?php // echo $id_materia;  ?> "> <button id="button" type="button">adicionar ao carrinho</button> </a> -->
-                            
-                    </form>
+                        <?php if (isset($_SESSION['nome'])) { 
+                            echo "</form>";
+                        }?>       
                 </div>
             </div>
         </div>
     </div>
+    <br><br>
     </section>
     </body>
     <?php include "../Class/footer.inc.php"; ?>

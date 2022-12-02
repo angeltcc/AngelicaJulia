@@ -66,7 +66,7 @@
 
                 <datalist id="historico">
                 <!-- <option value="Camiseta"></option>
-                <option value="Baby look"></option>
+                <option value="Baby-look"></option>
                 <option value="minimalista"></option> -->
                 </datalist>
                 
@@ -125,7 +125,7 @@
                 $cat_ext  =  isset($_POST['extravagante'])   ? "extravagante" : "X";
                 
                 $mod_reg  =  isset($_POST['regular'])   ? "regular" : "X";
-                $mod_bab  =  isset($_POST['baby look'])   ? "baby look" : "X";
+                $mod_bab  =  isset($_POST['baby-look'])   ? "baby-look" : "X";
                 
                 $cor_pre  =  isset($_POST['preto'])   ? "preto" : "X";
                 $cor_bra  =  isset($_POST['branco'])   ? "branco" : "X";
@@ -289,9 +289,9 @@
                             </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="baby look" type="checkbox" value="baby_look" id="fcustomCheck1">
+                        <input class="form-check-input" name="baby-look" type="checkbox" value="baby-look" id="fcustomCheck1">
                         <label class="custom-control-label" for="customCheck1">
-                            Baby look
+                            Baby-look
                         </label>
                     </div>
                     <br/>

@@ -124,6 +124,7 @@ $tb_produtos = $stmtpr->fetchAll();
                 <a class="page-link" href="#">Next</a>
                 </li>
             </ul>
+            <br><br>
     </section>
 
         <!-- Modal -->
@@ -204,9 +205,9 @@ $tb_produtos = $stmtpr->fetchAll();
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="baby look" type="checkbox" value="baby_look" id="fcustomCheck1">
+                            <input class="form-check-input" name="baby-look" type="checkbox" value="baby-look" id="fcustomCheck1">
                             <label class="custom-control-label" for="customCheck1">
-                                Baby look
+                                Baby-look
                             </label>
                         </div>
                 <br/>

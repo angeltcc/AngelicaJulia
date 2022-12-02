@@ -47,7 +47,7 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     <section>
     <div class="prod-info">
         <div id="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col fundo-img">
                     
                             <img src="<?php echo $imagem; ?>" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" alt="...">
@@ -63,40 +63,21 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                     <p id="descricao">Categoria: <?php echo $categoria; ?> </p>   
                     
                     <p id="descricao">Tamanho: <?php echo $tamanho; ?> </p>              
+                    <br> 
+                    <div class="row row-6">
+                    
+                    
+                    <?php if (!isset($_SESSION['nome'])) {
+	                    echo '
+                        <a style="text-align: center;"> 
+                        <button id="button" data-bs-target="#loginmodal" data-bs-toggle="modal" 
+                        type="button">Adicionar ao carrinho</button> </a> '; }
+                        else {
+                            echo '<a style="text-align: center;" href="carrinho.php?ac=add&id= <?php  echo $id_produto;  ?> "> <button id="button" type="button">Adicionar ao carrinho</button> </a> ';
+                        }?>   
                         
-                    <!--    <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tamanho" id="inlineRadio1" value="PP">
-                            <label class="form-check-label" for="inlineRadio1"> PP </label>
-                        </div>      
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tamanho" id="inlineRadio1" value="P">
-                            <label class="form-check-label" for="inlineRadio1"> P </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tamanho" id="inlineRadio2" value="M">
-                            <label class="form-check-label" for="inlineRadio2"> M </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tamanho" id="inlineRadio1" value="G">
-                            <label class="form-check-label" for="inlineRadio1"> G </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tamanho" id="inlineRadio2" value="GG">
-                            <label class="form-check-label" for="inlineRadio2"> GG </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tamanho" id="inlineRadio1" value="GGG">
-                            <label class="form-check-label" for="inlineRadio1"> GGG </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tamanho" id="inlineRadio1" value="EGG">
-                            <label class="form-check-label" for="inlineRadio1"> EGG </label>
-                        </div> -->
-                        <br> 
-                        <div class="row row-6">
-                        <a style="text-align: center;" href="carrinho.php?ac=add&id= <?php  echo $id_produto;  ?> "> <button id="button" type="button">Adicionar ao carrinho</button> </a> 
-                            <!-- <a href="carrinho.php"> <button id="button" type="button">adicionar ao carrinho</button> </a> -->
-                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

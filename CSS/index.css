@@ -1,4 +1,5 @@
 /*gerais */
+
 html {
     scroll-behavior: smooth;
 }
@@ -58,9 +59,10 @@ body {
 }
 
 section {
-    padding: 6%;
     min-height: 100vh;
     padding-top: 8rem;
+    padding-left: 6%;
+    padding-right: 6%;
 }
 
 .scroll:nth-of-type(2) {

@@ -53,7 +53,7 @@
             $txtbuscar  = isset($_POST['txtbuscar']) ? $_POST['txtbuscar']: ' ';
             $buscageral = '%' . $txtbuscar . '%';
 
-            $sql        = "SELECT * FROM tb_produtos WHERE nome_produto LIKE ? OR categoria LIKE ? OR modelagem LIKE ? OR cor LIKE ? OR descricao LIKE ? AND     estoque > 0";
+            $sql        = "SELECT * FROM tb_produtos WHERE nome_produto LIKE ? OR categoria LIKE ? OR modelagem LIKE ? OR cor LIKE ? AND estoque > 0";
             $stmt       = $pdo->prepare($sql);
             $stmt->bindParam(1, $buscageral);
             $stmt->bindParam(2, $buscageral);
@@ -92,9 +92,6 @@
                 </div>
                 </div>"; } 
             } ?>
-
-
-
 <?php         
 
                 if (isset($_POST['btnfiltro'])){
@@ -111,7 +108,7 @@
                 $cat_ext  =  isset($_POST['extravagante'])   ? "extravagante" : "X";
                 
                 $mod_reg  =  isset($_POST['regular'])   ? "regular" : "X";
-                $mod_bab  =  isset($_POST['baby look'])   ? "baby look" : "X";
+                $mod_bab  =  isset($_POST['baby-look'])   ? "baby-look" : "X";
                 
                 $cor_pre  =  isset($_POST['preto'])   ? "preto" : "X";
                 $cor_bra  =  isset($_POST['branco'])   ? "branco" : "X";
@@ -260,9 +257,9 @@
                             </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="baby look" type="checkbox" value="baby_look" id="fcustomCheck1">
+                        <input class="form-check-input" name="baby-look" type="checkbox" value="baby-look" id="fcustomCheck1">
                         <label class="custom-control-label" for="customCheck1">
-                            Baby look
+                            Baby-look
                         </label>
                     </div>
                     <br/>

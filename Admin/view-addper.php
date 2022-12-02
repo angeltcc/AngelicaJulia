@@ -3,7 +3,7 @@ session_start();
 require_once "../Class/conexao.php";
 
 $pdo = conectar();
-$id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+$id_materia = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
 ?>
 <!doctype html>
@@ -59,31 +59,10 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                     aria-label=".form-control-md example" type="text" name="nome" maxlength="45" required/>
                     <br>
                 
-                <h6 id="tituloadd"> Categoria</h6>
-                            <select id="categoria" name="categoria" class="form-select form-select-md" required>
-                            <option selected> Selecionar...</option>
-                            <option>Minimalista</option>
-                            <option>Medio</option>
-                            <option>Extravagante</option>
-                            </select>
-                        <br>
-
-                <h6 id="tituloadd"> Cor</h6>
-                            <select id="cor" name="cor" class="form-select form-select-md" required>
-                            <option selected> Selecionar...</option>
-                            <option>Preto</option>
-                            <option>Branco</option>
-                            <option>Vermelho</option>
-                            <option>Azul</option>
-                            <option>Cinza</option>
-                            </select>
-                        <br>
-
                     <h6 id="tituloadd"> Valor</h6>
                     <input class="form-control form-control-md" placeholder="30.00" 
                     aria-label=".form-control-md example" type="text" name="valor" maxlength="45" required/>    
                 <br>
-
 
                 <h6 id="tituloadd"> Modelagem</h6>
                             <select id="modelagem" name="modelagem" class="form-select form-select-md" required>
@@ -92,10 +71,7 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                             <option>Baby look</option>
                             </select>
                         <br>          
-    
-                    <h6 id="tituloadd"> Descrição</h6>
-                    <textarea class="form-control form-control-md" name="descricao" placeholder="Descrição do produto"></textarea>
-                    <br>
+
 
                     <h6 id="tituloadd"> Estoque </h6>
                     <input type="number" class="form-control form-control-md" name="estoque" placeholder="Estoque" ></input>
@@ -145,22 +121,16 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 <?php 
                 if (isset($_POST['btnadd'])) {
     //echo'formulario enviado com sucesso';
-
-
-
                     $img     = $_FILES['imagem'];
                     $temp       = $img['tmp_name'];
                     $nome       = isset($_POST['nome'])       ? $_POST['nome']        : null;
                     $valor      = isset($_POST['valor'])      ? $_POST['valor']       : null;
                     $modelagem  = isset($_POST['modelagem'])  ? $_POST['modelagem']   : null;
-                    $categoria  = isset($_POST['categoria'])  ? $_POST['categoria']   : null;
-                    $cor        = isset($_POST['cor'])        ? $_POST['cor']         : null;
-                    $descricao  = isset($_POST['descricao'])  ? $_POST['descricao']   : null;
                     $estoque    = isset($_POST['estoque'])    ? $_POST['estoque']     : null;
                     $tamanho    = isset($_POST['tamanho'])    ? $_POST['tamanho']     : null;
 
 
-                    $sql = "INSERT INTO tb_produtos (imagem, nome_produto, valor, modelagem, categoria, cor, descricao, estoque, tamanho) VALUES (:i, :n , :v, :m, :c, :co, :d , :e, :t)";
+                    $sql = "INSERT INTO tb_materiasprimas (imagem, nome, valor, modelagem, estoque, tamanho) VALUES (:i, :n , :v, :m, :e, :t)";
     
                     $stmt = $pdo->prepare($sql);
 
@@ -169,9 +139,6 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                     $stmt->bindParam(':n', $nome);
                     $stmt->bindParam(':v', $valor);
                     $stmt->bindParam(':m', $modelagem);
-                    $stmt->bindParam(':c', $categoria);
-                    $stmt->bindParam(':co', $cor);
-                    $stmt->bindParam(':d', $descricao);
                     $stmt->bindParam(':e', $estoque);
                     $stmt->bindParam(':t', $tamanho);
 
@@ -181,7 +148,7 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                         move_uploaded_file($temp, "../Images/camisetas/" . str_replace(" ", "_", $nome) . ".png");
 
                         echo "<script>alert('Produto adicionado!')</script>";
-                        echo"<script> window.location.assign('../Admin/editarprodutos.php') </script>";
+                        echo"<script> window.location.assign('../Admin/editpersonalizado.php') </script>";
                     } catch (PDOException $e) {
                         echo "<script> alert('Não foi possível adicionar produto') </script>";
                     }

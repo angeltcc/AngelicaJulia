@@ -43,8 +43,8 @@ echo $id_produto;
     <div class="barrabotao">
         <form class="search" name="pesquisa" method="post">
             <div class="input-group mb-0">
-                <button class="btn btn-outline-secondary botao" name="botaobusca" type="submit" id="button-addon1"><img src="../Images/search.png" style="width: 40px; height:40px;"></button>
-                <input type="search" name="txtbuscar" id="texto" list="historico" class="form-control form-control-lg pesquisar" placeholder="Pesquisar">
+                <button class="btn btn-outline-secondary botao" style="z-index: -1!important;" name="botaobusca" type="submit" id="button-addon1"><img src="../Images/search.png" style="width: 40px; height:40px;"></button>
+                <input type="search" style="z-index: -1!important;" name="txtbuscar" id="texto" list="historico" class="form-control form-control-lg pesquisar" placeholder="Pesquisar">
             </div>
         </form>
         <button type="img"> <img src="../Images/filtrarazul.png" data-bs-toggle="modal" data-bs-target="#filtro" style="width: 180px; height: 70px; margin-left: 50px;"></button>
@@ -89,12 +89,13 @@ echo $id_produto;
                     <h6><?php echo "R$ " . number_format ($p['valor'], 2, ",", ".") . "<br>"; ?></h6>
                     <div class="cor">
                        <!-- <a href="view-editprod.php?id=<?php //echo $p['id_produto']; ?>" ><button class="buy">editar</button></a> -->
-                        <div class="btn-group">
+                        <div class="btn-group" >
                             <a href="view-editprod.php?id=<?php echo $p['id_produto']; ?>"><button style="margin-left: -10px;" type="button" class="alterar">
                             <img src="../Images/editar.png" style="width: 50px;">                          
                             </button></a>
 
-                            <a href="../Class/delete.php?id=<?php echo $p['id_produto']; ?>" onclick="return confirm('Tem certeza que deseja deletar este registro?')"><button type="submit" class="alterar" name="delete">
+                            <a href="../Class/delete.php?id=<?php echo $p['id_produto']; ?>" onclick="return confirm('Tem certeza que deseja deletar este registro?')">
+                            <button type="submit" class="alterar" name="delete">
                             <img src="../Images/excluirprod.png" style="width: 50px;">
                             </button></a>
                         </div>
@@ -238,9 +239,9 @@ echo $id_produto;
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="baby look" type="checkbox" value="baby_look" id="fcustomCheck1">
+                            <input class="form-check-input" name="baby-look" type="checkbox" value="baby_look" id="fcustomCheck1">
                             <label class="custom-control-label" for="customCheck1">
-                                Baby look
+                                Baby-look
                             </label>
                         </div>
                 <br/>

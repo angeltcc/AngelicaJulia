@@ -3,7 +3,7 @@ session_start();
 require_once "../Class/conexao.php";
 
 $pdo = conectar();
-$id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+$id_materia = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
 ?>
 <!doctype html>
@@ -37,11 +37,11 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
     <!-- header -->
     <?php include "../Class/header2.inc.php"; ?>
     <?php
-    $sqlpr = "SELECT * FROM tb_produtos where id_produto = $id_produto LIMIT 1";
+    $sqlpr = "SELECT * FROM tb_materiasprimas where id_materia = $id_materia LIMIT 1";
     $stmtpr = $pdo->prepare($sqlpr);
     $stmtpr->execute();
-    $tb_produtos = $stmtpr->fetch(PDO::FETCH_ASSOC);
-    extract($tb_produtos);
+    $materias = $stmtpr->fetch(PDO::FETCH_ASSOC);
+    extract($materias);
     /*var_dump($tb_produto);*/
 
     ?>
@@ -53,40 +53,22 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                     <div class="row align-items-center">
                         <div class="col fundo-img">
 
-
-
                             <img src="<?php echo $imagem; ?>" class="d-block w-100" alt="...">
                             <div class="mb-3">
                                 <label for="formFile" class="form-label"></label>
                                 <input class="form-control" type="file" name="imagem" id="formFile">
                             </div>
 
-
                             <!--<img src="../Images/camisetabase.png" class="img-fluid mw-md-50 mw-lg-30 mb-6 mb-md-0">-->
                         </div>
                         <div class="col fundo-info">
 
                             <h6 id="tituloadd"> Nome </h6>
-                            <input class="form-control form-control-md" placeholder="<?php echo $nome_produto; ?>" aria-label=".form-control-md example" type="text" style="text-align: center;" name="nome" maxlength="45" />
+                            <input class="form-control form-control-md" placeholder="<?php echo $nome; ?>" aria-label=".form-control-md example" type="text" style="text-align: center;" name="nome" maxlength="45" />
                             <br>
 
                             <h6 id="tituloadd"> Valor </h6>
                             <input class="form-control form-control-md" placeholder="<?php echo "R$ " . number_format($valor, 2, ",", "."); ?>" aria-label=".form-control-md example" type="text" style="text-align: center;" name="valor" maxlength="45" />
-                            <br>
-
-                            <h6 id="descricao-titulo"> Descrição</h6>
-
-                            <textarea class="form-control" name="descricao" style="text-align: center;" placeholder="<?php echo $descricao; ?>" id="floatingTextarea2" style="height: 100px"></textarea>
-                            <label for="floatingTextarea2"></label>
-                            <br>
-
-                            <h6 id="tituloadd"> Categoria</h6>
-                            <select id="categoria" name="categoria" style="text-align: center;" class="form-select form-select-md">
-                                <option selected> <?php echo $categoria; ?></option>
-                                <option>Minimalista</option>
-                                <option>Medio</option>
-                                <option>Extravagante</option>
-                            </select>
                             <br>
 
                             <h6 id="tituloadd"> Modelagem </h6>
@@ -110,17 +92,6 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                             </select>
                             <br>
 
-                            <h6 id="tituloadd"> Cor </h6>
-                            <select id="cor" name="cor" style="text-align: center;" class="form-select form-select-md">
-                                <option selected> <?php echo $cor; ?></option>
-                                <option>Preto</option>
-                                <option>Branco</option>
-                                <option>Vermelho</option>
-                                <option>Azul</option>
-                                <option>Cinza</option>
-                            </select>
-                            <br><br>
-
                             <button id="button" style="text-align: center;" name="btnsalvar" type="submit">Salvar alterações</button>
                 </form>
             </div>
@@ -135,26 +106,22 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 <?php
 
 if (isset($_POST['btnsalvar'])) {
-    $sql = "SELECT * FROM tb_produtos WHERE tb_produtos.id_produto = $id_produto";
+    $sql = "SELECT * FROM tb_materiasprimas WHERE tb_materiasprimas.id_materia = $id_materia";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
-    $produto = $stmt->fetchAll();
+    $materia = $stmt->fetchAll();
 
     $img     = $_FILES['imagem'];
     $temp       = $img['tmp_name'];
-    $nome       = $_POST['nome'] != null             ? $_POST['nome']        : $produto[0]['nome_produto'];
-    $valor      = $_POST['valor'] != null            ? $_POST['valor']       : $produto[0]['valor'];
-    $descricao  = $_POST['descricao'] != null        ? $_POST['descricao']   : $produto[0]['descricao'];
-    $categoria  = $_POST['categoria'] != null        ? $_POST['categoria']   : $produto[0]['categoria'];
-    $modelagem  = $_POST['modelagem'] != null        ? $_POST['modelagem']   : $produto[0]['modelagem'];
-    $tamanho    = $_POST['tamanho'] != null          ? $_POST['tamanho']     : $produto[0]['tamanho'];
-    $cor        = $_POST['cor'] != null              ? $_POST['cor']         : $produto[0]['cor'];
+    $nome       = $_POST['nome'] != null             ? $_POST['nome']        : $materia[0]['nome'];
+    $valor      = $_POST['valor'] != null            ? $_POST['valor']       : $materia[0]['valor'];
+    $modelagem  = $_POST['modelagem'] != null        ? $_POST['modelagem']   : $materia[0]['modelagem'];
+    $tamanho    = $_POST['tamanho'] != null          ? $_POST['tamanho']     : $materia[0]['tamanho'];
 
 
-
-    $sql = "UPDATE tb_produtos SET imagem = ?, nome_produto = ?, valor = ?, descricao = ?, categoria = ?, modelagem = ?, tamanho = ?, cor = ? 
-    WHERE tb_produtos.id_produto = $id_produto";
+    $sql = "UPDATE tb_materiasprimas SET imagem = ?, nome = ?, valor = ?, modelagem = ?, tamanho = ? 
+    WHERE tb_materiasprimas.id_materia = $id_materia";
 
     $stmt = $pdo->prepare($sql);
 
@@ -162,16 +129,13 @@ if (isset($_POST['btnsalvar'])) {
     $stmt->bindParam(1, $img);
     $stmt->bindParam(2, $nome);
     $stmt->bindParam(3, $valor);
-    $stmt->bindParam(4, $descricao);
-    $stmt->bindParam(5, $categoria);
-    $stmt->bindParam(6, $modelagem);
-    $stmt->bindParam(7, $tamanho);
-    $stmt->bindParam(8, $cor);
+    $stmt->bindParam(4, $modelagem);
+    $stmt->bindParam(5, $tamanho);
     try {
         $stmt->execute();
         move_uploaded_file($temp, "../Images/camisetas/" . str_replace(" ", "_", $nome) . ".png");
         echo "<script> alert('Produto alterado com sucesso') </script>";
-        echo "<script> window.location.assign('../Admin/editarprodutos.php') </script>";
+        echo "<script> window.location.assign('../Admin/editpersonalizado.php') </script>";
     } catch (PDOException $e) {
         echo "<script> alert('Não foi possível alterar produto') </script>";
     }

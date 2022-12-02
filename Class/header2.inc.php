@@ -17,15 +17,14 @@
                             </a>
                         </li>    
                         <li class="nav-item">
-                            <a class="nav-link info" href="../Admin/editarprodutos.php"> Editar produtos
-
+                            <a class="nav-link info" href="../Admin/editarprodutos.php"> 
+                                Editar produtos
                             </a>
-                            <!--<ul class="dropdown-menu"> 
-                                <li><a href="minimalista.php" class="dropdown-item">Minimalista</a></li>
-                                <li><a href="medio.php" class="dropdown-item">Médio</a></li>
-                                <li><a href="extravagante.php" class="dropdown-item">Extravagante</a></li>
-                            </ul> -->
-                            
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link info" href="../Admin/editpersonalizado.php"> 
+                                Personalizado
+                            </a>
                         </li>
                         </li>
                         <li class="nav-item">
@@ -56,11 +55,22 @@
                     <li><button class="dropdown-item" type="button" data-bs-toggle="modal"
                     style="margin-left: -20px;"	data-bs-target="#cadastromodal">Cadastro</button></li>
 
+                    <li><a href="../Public/index.php">
+                    <button class="dropdown-item" type="button" style="margin-left: -20px;">Página comum</button></a></li>
+
                     <li><hr class="dropdown-divider" style="margin-left: -20px;"></li>
                     <li><a href="../Class/logout.php" onclick="return confirm('Tem certeza que deseja sair?')">
                     <button class="dropdown-item" type="button" style="margin-left: -20px;">Sair</button></a></li>
                 </ul>
                 </div>
+                <span>
+
+                <?php 
+                
+                if (isset($_SESSION['nome'])) {
+		                echo $_SESSION['nome']; }?> 
+
+                </span>
             </nav>
         </div>
     </header>

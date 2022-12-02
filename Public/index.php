@@ -92,6 +92,7 @@ $pdo = conectar();
         </div>
         </div>
     </section>
+                        
     <?php include "../Class/footer.inc.php"; ?>
     <script src="../JS/custom.js"></script>
     </body>
