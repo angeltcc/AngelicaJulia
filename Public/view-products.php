@@ -73,7 +73,8 @@ $id_produto = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                         <button id="button" data-bs-target="#loginmodal" data-bs-toggle="modal" 
                         type="button">Adicionar ao carrinho</button> </a> '; }
                         else {
-                            echo '<a style="text-align: center;" href="carrinho.php?ac=add&id= <?php  echo $id_produto;  ?> "> <button id="button" type="button">Adicionar ao carrinho</button> </a> ';
+                            echo '<a style="text-align: center;" href="carrinho.php?ac=add&id=',$id_produto,'">
+                             <button id="button" type="button">Adicionar ao carrinho</button> </a> ';
                         }?>   
                         
 

@@ -45,124 +45,6 @@ $clientes = $stmtpr->fetch();
 <!-- header -->
 <?php include "../Class/header.inc.php"; ?>
 <!-- body -->
-
-<?php
-
-
-if (!isset($_SESSION['nome'])) {
-	echo '
-	
-    <!-- modal login -->
-<div class="modal fade show" id="loginmodal" aria-labelledby="exampleModalToggleLabel" tabindex="-1" aria-modal="true" role="dialog" style="display: block;">
-        <div class="modal-dialog modal-lg modal-dialog-top">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-4" id="exampleModalToggleLabel">Iniciar sessão</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-            <div class="modal-body">
-                <div class="container fixed-center">
-                    <div class="text-center mb-3">
-                        <img style="width: 150px;" src="../Images/fantasma.png">
-                        </div>
-                            
-                <!-- formulario -->
-                    <form id="login-usuario-form" method="post">
-					<span id="msgAlertErroLogin"></span>
-					<div class="mb-4">
-					<input class="form-control form-control-lg" placeholder="E-mail" aria-label=".form-control-lg example" type="text" name="email" maxlength="45" required="">
-					</div>
-					
-					<input class="form-control form-control-lg" placeholder="Senha" aria-label=".form-control-lg example" type="password" name="senha" maxlength="32" 
-					
-					<!--="" checkbox="" --="">
-					<div class="container-p">
-					<input type="submit" name="btnlogin" value="Entrar" class="button-submit">
-					<br><br>
-					<input class="form-check-input" type="checkbox" value="" id="loginCheck" checked="">
-					<label class="form-check-label" for="loginCheck"> Lembrar de mim </label>
-                    </div>
-
-                <!-- esqueceu a senha -->
-                    <div class="col-12 col-md-6 order-md-1">
-                        <a class="amodal" href="headerEfooter/esqueceusenha.php">Esqueceu a senha?</a>
-                    </div> 
-
-
-                    <div class="container-p">
-                        <p class="text-center">Não é nosso cliente? <button class="text amodal" data-bs-target="#cadastromodal" data-bs-toggle="modal">Cadastre-se<p></p>
-                    </button></p></div>
-                    </form>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
-        <!-- modal cadastro -->
-<div class="modal fade" id="cadastromodal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-top">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-4" id="exampleModalToggleLabel2">Cadastre-se</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container fixed-center">
-                    <div class="text-center mb-3">
-                    <img style="width: 150px;" src="../Images/fantasma.png">
-                    </div>
-
-                    <!-- formulario -->
-                    <form method="post">
-                        <div class="mb-4">
-                            <input class="form-control form-control-lg" placeholder="Nome" aria-label=".form-control-lg example" type="text" name="nome" maxlength="45" required="">
-                        </div>
-                        <div class="mb-4">
-                            <input class="form-control form-control-lg" placeholder="Telefone" aria-label=".form-control-lg example" type="text" name="telefone" maxlength="11" onkeypress="$(this).mask(\'(00) 00000-0000\');" required="">
-                        </div>
-                        <div class="mb-4">
-                            <input class="form-control form-control-lg" placeholder="CPF" aria-label=".form-control-lg example" type="text" name="CPF" maxlength="11" onkeypress="$(this).mask(\'000.000.000-00\'), {reverse: true}" required="">
-                        </div>
-                        <div class="mb-4">
-                            <input class="form-control form-control-lg" placeholder="E-mail" aria-label=".form-control-lg example" type="email" name="email" maxlength="45" required="">
-                        </div>
-                        <div class="mb-4">
-                            <input class="form-control form-control-lg" placeholder="Usuário" aria-label=".form-control-lg example" type="text" name="usuario" maxlength="11" required="">
-                        </div>
-                        <div class="mb-4">
-                            <input class="form-control form-control-lg" placeholder="Senha" aria-label=".form-control-lg example" type="password" name="senha" maxlength="32" required="">
-                        </div>
-                        <div class="mb-4">
-                            <input class="form-control form-control-lg" placeholder="Repetir senha" aria-label=".form-control-lg example" type="password" name="senha2" maxlength="32" required="">
-                        </div>
-                        <input type="submit" name="btnsignup" value="Cadastrar" class="button-submit">
-                    </form>
-
-                    <!-- direcionamento login -->
-                    <div class="container-p">
-                        <p class="text-center">Já é nosso cliente? <button class="text amodal" data-bs-target="#loginmodal" data-bs-toggle="modal">Entre aqui<p></p>
-                    </button></p></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-
-
-
-	<!-- body -->
-
-	<script> document.querySelector(\'#loginmodal\').scrollIntoView(); </script>
-
-
-
-<div class="modal-backdrop fade show"></div></body>';
-} else {
-?>
-
 	<body> <?php
 			$id_cliente = $_SESSION['nome'];
 
@@ -301,9 +183,6 @@ if (!isset($_SESSION['nome'])) {
 						</div>
 		</section>
 		<?php include "../Class/footer.inc.php"; ?>
-
-	<?php
-} ?>
 
 	</body>
 
