@@ -1,6 +1,6 @@
 <?php 
 session_start();
 session_destroy();
-echo"<script> window.location.assign('../Public/index.php') </script>";
+echo "<meta http-equiv='refresh' content='0; URL=../Public/index.php'/>";
 
 ?>

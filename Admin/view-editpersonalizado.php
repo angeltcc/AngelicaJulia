@@ -92,6 +92,10 @@ $id_materia = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                             </select>
                             <br>
 
+                            <h6 id="tituloadd"> Estoque </h6>
+                            <input type="number" class="form-control form-control-md" style="text-align: center;" name="estoque" placeholder="<?php echo $estoque; ?>" ></input>
+                            <br>
+
                             <button id="button" style="text-align: center;" name="btnsalvar" type="submit">Salvar alterações</button>
                 </form>
             </div>
@@ -118,9 +122,10 @@ if (isset($_POST['btnsalvar'])) {
     $valor      = $_POST['valor'] != null            ? $_POST['valor']       : $materia[0]['valor'];
     $modelagem  = $_POST['modelagem'] != null        ? $_POST['modelagem']   : $materia[0]['modelagem'];
     $tamanho    = $_POST['tamanho'] != null          ? $_POST['tamanho']     : $materia[0]['tamanho'];
+    $tamanho    = $_POST['estoque'] != null          ? $_POST['estoque']     : $materia[0]['estoque'];
 
 
-    $sql = "UPDATE tb_materiasprimas SET imagem = ?, nome = ?, valor = ?, modelagem = ?, tamanho = ? 
+    $sql = "UPDATE tb_materiasprimas SET imagem = ?, nome = ?, valor = ?, modelagem = ?, tamanho = ?, estoque = ? 
     WHERE tb_materiasprimas.id_materia = $id_materia";
 
     $stmt = $pdo->prepare($sql);
@@ -131,6 +136,7 @@ if (isset($_POST['btnsalvar'])) {
     $stmt->bindParam(3, $valor);
     $stmt->bindParam(4, $modelagem);
     $stmt->bindParam(5, $tamanho);
+    $stmt->bindParam(6, $estoque);
     try {
         $stmt->execute();
         move_uploaded_file($temp, "../Images/camisetas/" . str_replace(" ", "_", $nome) . ".png");

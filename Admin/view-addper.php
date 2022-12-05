@@ -68,7 +68,7 @@ $id_materia = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                             <select id="modelagem" name="modelagem" class="form-select form-select-md" required>
                             <option selected> Selecionar...</option>
                             <option>Regular</option>
-                            <option>Baby look</option>
+                            <option>Baby-look</option>
                             </select>
                         <br>          
 
@@ -152,6 +152,15 @@ $id_materia = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                     } catch (PDOException $e) {
                         echo "<script> alert('Não foi possível adicionar produto') </script>";
                     }
+
+                    /*if ($stmt->execute()) {
+                        move_uploaded_file($temp, "../Images/camisetas/" . str_replace(" ", "_", $nome) . ".png");
+
+                        echo "<script>alert('Produto adicionado!')</script>";
+                        echo"<script> window.location.assign('../Admin/editpersonalizado.php') </script>";
+                    }  else {
+                        echo "<script> alert('Não foi possível adicionar produto') </script>";
+                    }*/
 
 
                     

@@ -204,7 +204,7 @@ if (isset($_POST['finalizaVenda'])) {
 
 		$estoque =  $stm->fetch();
 		if ($estoque[0] < $qtd) {
-			echo "<script> alert('Um dos pedidos não estão disponíveis na quandidade selecionada') </script>";
+			echo "<script> alert('Um dos pedidos não estão disponíveis na quantidade selecionada') </script>";
 			exit();
 		}
 
@@ -212,29 +212,33 @@ if (isset($_POST['finalizaVenda'])) {
 			echo "<script> alert('Você não pode inserir produtos de valores negativos ou nulos') </script>";
 			exit();
 		}
-
-		$stm = $pdo->prepare("SELECT id_venda FROM tb_vendas ORDER BY id_vendas DESC LIMIT 1");
+	}
+		$stm = $pdo->prepare("SELECT id_venda FROM tb_vendas ORDER BY id_venda DESC LIMIT 1");
 		$stm->execute();
 
 		$ultimoid = $stm->fetch();
-
 		$_SESSION['ultimoId'] = $ultimoid[0];
 
+		foreach ($_SESSION['carrinho'] as $id => $qtd) {
+
 		$stmt = $pdo->prepare("insert into tb_vendaprodutos (venda, produto, quantidade) values (?,?,?)");
-		$stmt->bindValue('1', $_SESSION["ultimoId"]);
-		$stmt->bindValue('2', $id);
-		$stmt->bindValue('3', $qtd);
+		$stmt->bindValue(1, (INT)$_SESSION["ultimoId"]);
+		$stmt->bindValue(2, $id);
+		$stmt->bindValue(3, $qtd);
 		$stmt->execute();
 
-		$stm = $pdo->prepare("UPDATE produtos SET estoque = (estoque - ?) WHERE idproduto = ?");
+		$stm = $pdo->prepare("UPDATE tb_produtos SET estoque = (estoque - ?) WHERE id_produto = ?");
 		$stm->bindValue(1, $qtd);
 		$stm->bindValue(2, $id);
 		$stm->execute();
 
 		unset($_SESSION['carrinho']);
 		unset($_SESSION['valor_total']);
-
-		header("Location: ../Public/produtos.php");
+		
 	}
+	
+	echo "<script> alert('Pedido realizado com sucesso') </script>";
+
+	echo "<meta http-equiv='refresh' content='0; URL=../Public/produtos.php'/>";
 }
 ?>

@@ -33,12 +33,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
-                <!--abrir pagina normal para poder realizar compras-->
-                <a type="image" href="../Public/carrinho.php" style="margin-right: 2rem;"> 
-                    <img src="../Images/Icons/icons8-carrinho-de-compras-100.png" height ="40" width="40"/> 
-                    <!--<p class="descricao"> carrinho </p> -->
-                </a>
+                </div>               
 
                 <!--abrir modal login-->
                 <div class="dropend">

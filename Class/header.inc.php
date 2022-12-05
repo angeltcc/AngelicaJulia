@@ -90,7 +90,7 @@
                     <?php if (isset($_SESSION['nome'])) {
 		                echo '
                         <li><hr class="dropdown-divider" style="margin-left: -20px;"></li>
-                        <li><a href="../Class/logout.php" onclick="return confirm(\"Tem certeza que deseja sair?"\)">
+                        <li><a href="../Class/logout.php" onclick="return confirm(\'Tem certeza que deseja sair?\')">
                         <button class="dropdown-item" type="button" style="margin-left: -20px;">Sair</button></a></li>
                     '; }?> 
                     

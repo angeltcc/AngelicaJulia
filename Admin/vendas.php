@@ -40,10 +40,9 @@ $vendas = $stmtpr->fetchAll();
     <table class="table col-6">
         <thead>
             <tr>
-                <th scope="col" class="col-2">Id</th>
-                <th scope="col" class="col-2">Data</th>
-                <th scope="col" class="col-2">Frete</th>
-                <th scope="col" class="col-2">Cliente</th>
+                <th scope="col" class="col-4">Id</th>
+                <th scope="col" class="col-4">Data</th>
+                <th scope="col" class="col-4">Cliente</th>
                 
             </tr>
         </thead>
@@ -52,7 +51,6 @@ $vendas = $stmtpr->fetchAll();
                 <tr>
                     <td><?php echo $v['id_venda']; ?></td>
                     <td><?php echo $v['data_venda']; ?></td>
-                    <td><?php echo $v['frete']; ?></td>
                     <td><?php echo $v['cliente']; ?></td>
                 </tr>
             <?php } ?>

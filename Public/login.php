@@ -70,6 +70,7 @@ if (isset($_POST['btnlogin'])) {
         $_SESSION['nivel'] = $user['nivel'];
         $_SESSION['id']    = $user['id_cliente'];
         $_SESSION['email'] = $user['email'];
+        $_SESSION['usuario'] = $user['usuario'];
 
         if ($_SESSION['nivel'] == 1) {
             echo "<script> window.location.assign('../Admin/index2.php') </script>";

@@ -5,15 +5,17 @@ include_once "../Class/conexao.php";
 $pdo = conectar();
 
 //variaveis
-$sqlpr = "SELECT * FROM tb_clientes WHERE email = '". $_SESSION['email']."'";
+$sqlpr = "SELECT email FROM tb_clientes WHERE email = '". $_SESSION['email']."'";
 $stmtpr = $pdo->prepare($sqlpr);
 $stmtpr->execute();
 $email = $stmtpr->fetch();
+$email = $email[0];
 
-$sqlpr = "SELECT * FROM tb_clientes WHERE nome = '". $_SESSION['nome']."'";
+$sqlpr = "SELECT nome FROM tb_clientes WHERE nome = '". $_SESSION['nome']."'";
 $stmtpr = $pdo->prepare($sqlpr);
 $stmtpr->execute();
 $nome = $stmtpr->fetch();
+$nome = $nome[0];
 
 $descricao = $_POST['descricao'];
 $color = $_POST['color'];
@@ -41,6 +43,7 @@ $headers .= "From: $nome <$email>";
 //enviar
 ini_set('smtp_port', 587);
 mail($destino, $assunto, $arquivo, $headers);
-echo "<meta http-equiv='refresh' content='10;URL=view-personalized.php'>";
+echo "<script> alert('Pedido realizado com sucesso') </script>";
+echo "<script> window.location.assign('../Public/personalizado.php') </script>";
 
 ?>
