@@ -43,8 +43,8 @@ echo $id_produto;
     <div class="barrabotao">
         <form class="search" name="pesquisa" method="post">
             <div class="input-group mb-0">
-                <button class="btn btn-outline-secondary botao" style="z-index: -1!important;" name="botaobusca" type="submit" id="button-addon1"><img src="../Images/search.png" style="width: 40px; height:40px;"></button>
-                <input type="search" style="z-index: -1!important;" name="txtbuscar" id="texto" list="historico" class="form-control form-control-lg pesquisar" placeholder="Pesquisar">
+                <button class="btn btn-outline-secondary botao" name="botaobusca" type="submit" id="button-addon1"><img src="../Images/search.png" style="width: 40px; height:40px;"></button>
+                <input type="search" name="txtbuscar" id="texto" list="historico" class="form-control form-control-lg pesquisar" placeholder="Pesquisar">
             </div>
         </form>
         <button type="img"> <img src="../Images/filtrarazul.png" data-bs-toggle="modal" data-bs-target="#filtro" style="width: 180px; height: 70px; margin-left: 50px;"></button>
